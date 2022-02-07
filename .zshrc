@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/dswij/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -103,13 +103,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval "$(starship init zsh)"
-eval "$(rbenv init -)"
+if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export GEM_PATH=/home/dswij/.local/share/gem/ruby/3.0.0/bin:$GEM_PATH
-export PATH=$PATH:/home/dswij/.local/share/gem/ruby/3.0.0/bin
-export PATH=$PATH:/home/dswij/.local/share/WebDriverManager/bin
+export GEM_PATH=$HOME/.local/share/gem/ruby/3.0.0/bin:$GEM_PATH
+export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
+export PATH=$PATH:$HOME/.local/share/WebDriverManager/bin
 export GOPATH=/Users/dharma.w/go
 export NVIMPATH=~/.config/nvim/init.vim
 export FZF_TMUX_PTS='-d 40%'
@@ -147,13 +147,13 @@ function save_dir() {
   echo export DEFWD=${DEFWD} >> ~/.zshenv
 }
 
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+if type gpgconf &>/dev/null; then
+  unset SSH_AGENT_PID
+  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  fi
+  gpgconf --launch gpg-agent
+  if [ ! -S "$SSH_AUTH_SOCK" ]; then
+    gpg-agent --daemon > /dev/null
+  fi
 fi
-gpgconf --launch gpg-agent
-if [ ! -S "$SSH_AUTH_SOCK" ]; then
-  gpg-agent --daemon > /dev/null
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
