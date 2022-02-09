@@ -107,10 +107,15 @@ if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Exports
 export GEM_PATH=$HOME/.local/share/gem/ruby/3.0.0/bin:$GEM_PATH
+export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:$HOME/.local/share/WebDriverManager/bin
-export GOPATH=/Users/dharma.w/go
+export PATH="/usr/local/opt/gnupg@2.2/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+export GPG_TTY=$(tty)
+export EDITOR='NVIM'
 export NVIMPATH=~/.config/nvim/init.vim
 export FZF_TMUX_PTS='-d 40%'
 export FZF_DEFAULT_OPTS="--bind f1:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)+abort,ctrl-f:page-down,ctrl-b:page-up"
@@ -121,24 +126,26 @@ alias swd=save_dir
 alias composer="php composer.phar"
 alias ls="exa --icons --long --group-directories-first --tree -1 --sort extension"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cat="bat --paging=never"
 
-function powerline_precmd() {
-  PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0} -hostname-only-if-ssh -modules venv,cwd,perms,git,exit -cwd-max-depth 3 -newline -cwd-mode plain)"
-}
+# function powerline_precmd() {
+#   PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0} -hostname-only-if-ssh -modules venv,cwd,perms,git,exit -cwd-max-depth 3 -newline -cwd-mode plain)"
+# }
+# 
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd" ]; then
+#       return
+#     fi
+#   done
+#   precmd_functions+=(powerline_precmd)
+# }
+# 
+# if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+#   install_powerline_precmd
+# fi
 
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
-  install_powerline_precmd
-fi
-
+# FIXME: there's a tool for this;
 function save_dir() {
   if [ -f ~/.zshenv ]; then
   sed -i tmp '/export DEFWD=.*/d' ~/.zshenv
@@ -147,13 +154,16 @@ function save_dir() {
   echo export DEFWD=${DEFWD} >> ~/.zshenv
 }
 
-if type gpgconf &>/dev/null; then
-  unset SSH_AGENT_PID
-  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  fi
-  gpgconf --launch gpg-agent
-  if [ ! -S "$SSH_AUTH_SOCK" ]; then
-    gpg-agent --daemon > /dev/null
-  fi
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
+gpgconf --launch gpg-agent
+if [ ! -S "$SSH_AUTH_SOCK" ]; then
+  gpg-agent --daemon > /dev/null
+fi
+
+
+# Mac specific keybindings
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
