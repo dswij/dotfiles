@@ -15,4 +15,5 @@ git clone --bare git@github.com:dswij/dotfiles $HOME/.cfg
 # TODO
 
 - [] Fix the save current working directory thingy
-- [] Get the glow.nvim working for neovim config
+- [] ~~Get the glow.nvim working for neovim config~~ This is already installed in neovim
+- [] Add some install scripts
