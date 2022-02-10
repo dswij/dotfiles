@@ -1,7 +1,9 @@
-#!/bin/env bash
+#!/bin/bash
 
 # Script to install fonts across machines
 
 
+# --- Add brew tap for fonts
+brew tap homebrew/cask-fonts
 # --- JetBrainsMono
-curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh
+brew install --cask font-jetbrains-mono-nerd-font
