@@ -102,6 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+fpath+=~/.zfunc
+
 eval "$(starship init zsh)"
 if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
 
