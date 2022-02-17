@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 fpath+=~/.zfunc
 
 eval "$(starship init zsh)"
+eval "$(pyenv init -)"
 if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
