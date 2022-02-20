@@ -130,6 +130,7 @@ alias composer="php composer.phar"
 alias ls="exa --icons --long --group-directories-first --tree -1 --sort extension"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias cat="bat --paging=never"
+alias stage1='rustc +stage1'
 
 # function powerline_precmd() {
 #   PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0} -hostname-only-if-ssh -modules venv,cwd,perms,git,exit -cwd-max-depth 3 -newline -cwd-mode plain)"
