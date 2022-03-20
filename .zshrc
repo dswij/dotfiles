@@ -110,6 +110,11 @@ if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+LFCD="/path/to/lfcd.sh"                                
+if [ -f "$LFCD" ]; then
+    source "$LFCD"
+fi
+
 # Exports
 export GEM_PATH=$HOME/.local/share/gem/ruby/3.0.0/bin:$GEM_PATH
 export GOPATH=$HOME/go
@@ -171,3 +176,11 @@ fi
 # Mac specific keybindings
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+
+docker() {
+ if [[ `uname -m` == "arm64" ]] && [[ "$1" == "run" || "$1" == "build" ]]; then
+    /usr/local/bin/docker "$1" --platform linux/amd64 "${@:2}"
+  else
+     /usr/local/bin/docker "$@"
+  fi
+}
