@@ -139,6 +139,7 @@ alias stage1='rustc +stage1'
 alias pym='python -m'
 alias create-venv='pyenv exec python -m venv'
 alias activate-venv='source ./venv/bin/activate'
+alias irebase='git rebase -i'
 
 # function powerline_precmd() {
 #   PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0} -hostname-only-if-ssh -modules venv,cwd,perms,git,exit -cwd-max-depth 3 -newline -cwd-mode plain)"
