@@ -139,9 +139,10 @@ alias stage1='rustc +stage1'
 alias pym='python -m'
 alias create-venv='pyenv exec python -m venv'
 alias activate-venv='source ./venv/bin/activate'
-alias irebase='git rebase -i'
+alias irebase='git stash && git rebase -i && git stash pop'
 alias with-dotenv="env $(grep -v '^#' .env | xargs)"
 alias docker-kill-all="docker ps --format='{{.ID}}' | xargs docker kill"
+alias lg="lazygit"
 
 # function powerline_precmd() {
 #   PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0} -hostname-only-if-ssh -modules venv,cwd,perms,git,exit -cwd-max-depth 3 -newline -cwd-mode plain)"
