@@ -130,7 +130,6 @@ export FZF_DEFAULT_OPTS="--bind f1:execute(less -f {}),ctrl-y:execute-silent(ech
 export FZF_DEFAULT_OPTS="--bind ctrl-f:page-down,ctrl-b:page-up"
 
 alias git-branch="git symbolic-ref --short HEAD"
-alias swd=save_dir
 alias composer="php composer.phar"
 alias ls="exa --icons --long --group-directories-first --tree -1 --sort extension"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -160,15 +159,6 @@ alias lg="lazygit"
 # if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 #   install_powerline_precmd
 # fi
-
-# FIXME: there's a tool for this;
-function save_dir() {
-  if [ -f ~/.zshenv ]; then
-  sed -i tmp '/export DEFWD=.*/d' ~/.zshenv
-  fi
-  export DEFWD=`{pwd}`
-  echo export DEFWD=${DEFWD} >> ~/.zshenv
-}
 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
