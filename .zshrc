@@ -169,6 +169,17 @@ if [ ! -S "$SSH_AUTH_SOCK" ]; then
   gpg-agent --daemon > /dev/null
 fi
 
+# Toggle ctrl-z instead of ctrl-z + fg
+ctrlz () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N ctrlz
+bindkey '^Z' ctrlz
 
 # Mac specific keybindings
 bindkey "^[[1;3C" forward-word
