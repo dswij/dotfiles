@@ -104,8 +104,8 @@ source $ZSH/oh-my-zsh.sh
 
 fpath+=~/.zfunc
 
-eval "$(starship init zsh)"
-eval "$(pyenv init -)"
+if type starship&> /dev/null; then eval "$(starship init zsh)"; fi
+if type pyenv &> /dev/null; then eval "$(pyenv init -)"; fi
 if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -142,23 +142,6 @@ alias irebase='git stash && git rebase -i && git stash pop'
 alias with-dotenv="env $(grep -v '^#' .env | xargs)"
 alias docker-kill-all="docker ps --format='{{.ID}}' | xargs docker kill"
 alias lg="lazygit"
-
-# function powerline_precmd() {
-#   PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0} -hostname-only-if-ssh -modules venv,cwd,perms,git,exit -cwd-max-depth 3 -newline -cwd-mode plain)"
-# }
-# 
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
-# 
-# if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
-#   install_powerline_precmd
-# fi
 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
