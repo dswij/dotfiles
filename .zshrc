@@ -139,17 +139,19 @@ alias pym='python -m'
 alias create-venv='pyenv exec python -m venv'
 alias activate-venv='source ./venv/bin/activate'
 alias irebase='git stash && git rebase -i && git stash pop'
-alias with-dotenv="env $(grep -v '^#' .env | xargs)"
+alias with-dotenv="env \$(grep -v '^#' .env | xargs)"
 alias docker-kill-all="docker ps --format='{{.ID}}' | xargs docker kill"
 alias lg="lazygit"
 
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-gpgconf --launch gpg-agent
-if [ ! -S "$SSH_AUTH_SOCK" ]; then
-  gpg-agent --daemon > /dev/null
+if type gpgconf &> /dev/null; then
+  unset SSH_AGENT_PID
+  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  fi
+  gpgconf --launch gpg-agent
+  if [ ! -S "$SSH_AUTH_SOCK" ]; then
+    gpg-agent --daemon > /dev/null
+  fi
 fi
 
 # Toggle ctrl-z instead of ctrl-z + fg
