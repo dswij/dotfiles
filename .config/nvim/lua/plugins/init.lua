@@ -9,7 +9,6 @@ return {
 	},
 	"folke/neodev.nvim",
 	"folke/which-key.nvim",
-	{ "nvim-treesitter/nvim-treesitter", init = function() end },
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	-- show leading whitespace
 	{
