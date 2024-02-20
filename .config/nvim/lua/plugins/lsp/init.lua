@@ -2,8 +2,25 @@ local init = function()
 	-- Setup language servers.
 	local lspconfig = require("lspconfig")
 	-- TODO: separate this into its own files
-	require("lspconfig").ruff_lsp.setup({
+	lspconfig.pyright.setup({
 		on_attach = on_attach,
+		settings = {
+			pyright = {
+				-- Using Ruff's import organizer
+				disableOrganizeImports = true,
+			},
+			python = {
+				analysis = {
+					-- Ignore all files for analysis to exclusively use Ruff for linting
+					ignore = { "*" },
+				},
+			},
+		},
+	})
+	lspconfig.ruff_lsp.setup({
+		on_attach = function()
+			client.server_capabilities.hoverProvider = false
+		end,
 		init_options = {
 			settings = {
 				-- Any extra CLI arguments for `ruff` go here.
