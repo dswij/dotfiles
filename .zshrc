@@ -104,10 +104,6 @@ source $ZSH/oh-my-zsh.sh
 
 fpath+=~/.zfunc
 
-if type starship&> /dev/null; then eval "$(starship init zsh)"; fi
-if type pyenv &> /dev/null; then eval "$(pyenv init -)"; fi
-if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 LFCD="/path/to/lfcd.sh"                                
@@ -179,3 +175,7 @@ docker() {
      /usr/local/bin/docker "$@"
   fi
 }
+
+if type starship&> /dev/null; then eval "$(starship init zsh)"; fi
+if type pyenv &> /dev/null; then eval "$(pyenv init -)"; fi
+if type rbenv&> /dev/null; then eval "$(rbenv init -)"; fi
