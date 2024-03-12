@@ -85,4 +85,7 @@ return {
 			vim.g.vim_markdown_auto_insert_bullets = 0
 		end,
 	},
+	{
+		"iamcco/markdown-preview.nvim"
+	},
 }

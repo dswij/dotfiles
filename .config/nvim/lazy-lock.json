@@ -2,6 +2,7 @@
   "fzf.vim": { "branch": "master", "commit": "20a1c014b5ea675581cc229778bf82f74cf6c917" },
   "indent-blankline.nvim": { "branch": "master", "commit": "821a7acd88587d966f7e464b0b3031dfe7f5680c" },
   "lazy.nvim": { "branch": "main", "commit": "28126922c9b54e35a192ac415788f202c3944c9f" },
+  "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "neoconf.nvim": { "branch": "main", "commit": "e169205e76a2c19480906b66d747a569dc2af86b" },
   "neodev.nvim": { "branch": "main", "commit": "a09881379ac7abddb8091c5edd292805a53ccf18" },
   "nvim-lspconfig": { "branch": "master", "commit": "c656fe5a58b9eae474f61d294648a897d53639cc" },
