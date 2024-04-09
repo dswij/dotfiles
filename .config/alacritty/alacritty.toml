@@ -37,7 +37,7 @@ TERM = "alacritty"
 size = 11
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Roboto Mono"
 style = "Regular"
 
 [[keyboard.bindings]]
