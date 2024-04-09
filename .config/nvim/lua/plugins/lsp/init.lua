@@ -3,7 +3,7 @@ local init = function()
 	local lspconfig = require("lspconfig")
 	-- TODO: separate this into its own files
 	lspconfig.pyright.setup({
-		on_attach = on_attach,
+		on_attach = function() end,
 		settings = {
 			pyright = {
 				-- Using Ruff's import organizer
@@ -78,4 +78,7 @@ end
 return {
 	"neovim/nvim-lspconfig",
 	config = init,
+	opts = {
+		inlay_hints = { enabled = true },
+	},
 }
