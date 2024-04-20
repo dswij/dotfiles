@@ -131,6 +131,7 @@ alias git-branch="git symbolic-ref --short HEAD"
 alias composer="php composer.phar"
 alias ls="exa --icons --long --group-directories-first --tree -1 --sort extension"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfg-status='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME status -uno'
 alias cat="bat --paging=never"
 alias stage1='rustc +stage1'
 alias pym='python -m'
