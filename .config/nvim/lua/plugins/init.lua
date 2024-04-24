@@ -67,6 +67,7 @@ return {
 			vim.g.fzf_layout = { down = "~20%" }
 		end,
 	},
+	-- Markdown
 	{
 		"plasticboy/vim-markdown",
 		ft = { "markdown" },
@@ -86,6 +87,14 @@ return {
 		end,
 	},
 	{
-		"iamcco/markdown-preview.nvim"
+		"iamcco/markdown-preview.nvim",
+	},
+	-- Easy commenting
+	{
+		"numToStr/Comment.nvim",
+		lazy = false,
+		config = function()
+			require("Comment").setup()
+		end,
 	},
 }
