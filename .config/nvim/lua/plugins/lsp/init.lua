@@ -1,8 +1,7 @@
 local init = function()
 	-- Setup language servers.
-	local lspconfig = require("lspconfig")
 	-- TODO: separate this into its own files
-	lspconfig.pyright.setup({
+	vim.lsp.config.pyright = {
 		on_attach = function() end,
 		settings = {
 			pyright = {
@@ -16,8 +15,10 @@ local init = function()
 				},
 			},
 		},
-	})
-	lspconfig.ruff_lsp.setup({
+	}
+	vim.lsp.enable("pyright")
+
+	vim.lsp.config.ruff_lsp = {
 		on_attach = function()
 			client.server_capabilities.hoverProvider = false
 		end,
@@ -27,14 +28,17 @@ local init = function()
 				args = {},
 			},
 		},
-	})
-	lspconfig.tsserver.setup({})
-	lspconfig.rust_analyzer.setup({
+	}
+	vim.lsp.enable("ruff-lsp")
+
+	-- vim.lsp.config.tsserver.setup({})
+	vim.lsp.config.rust_analyzer = {
 		-- Server-specific settings. See `:help lspconfig-setup`
 		settings = {
 			["rust-analyzer"] = {},
 		},
-	})
+	}
+	vim.lsp.enable("rust-analyzer")
 
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions

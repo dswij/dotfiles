@@ -97,4 +97,13 @@ return {
 			require("Comment").setup()
 		end,
 	},
+	-- FileTree
+	{
+		"nvim-tree/nvim-tree.lua",
+		lazy = false, -- Ensure it loads on startup
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("nvim-tree").setup({})
+		end,
+	},
 }
