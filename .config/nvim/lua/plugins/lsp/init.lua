@@ -1,44 +1,9 @@
 local init = function()
-	-- Setup language servers.
-	-- TODO: separate this into its own files
-	vim.lsp.config.pyright = {
-		on_attach = function() end,
-		settings = {
-			pyright = {
-				-- Using Ruff's import organizer
-				disableOrganizeImports = true,
-			},
-			python = {
-				analysis = {
-					-- Ignore all files for analysis to exclusively use Ruff for linting
-					ignore = { "*" },
-				},
-			},
-		},
-	}
-	vim.lsp.enable("pyright")
+	vim.lsp.config.ruff = require('plugins.lsp.ruff')
+	vim.lsp.enable('ruff')
 
-	vim.lsp.config.ruff_lsp = {
-		on_attach = function()
-			client.server_capabilities.hoverProvider = false
-		end,
-		init_options = {
-			settings = {
-				-- Any extra CLI arguments for `ruff` go here.
-				args = {},
-			},
-		},
-	}
-	vim.lsp.enable("ruff-lsp")
-
-	-- vim.lsp.config.tsserver.setup({})
-	vim.lsp.config.rust_analyzer = {
-		-- Server-specific settings. See `:help lspconfig-setup`
-		settings = {
-			["rust-analyzer"] = {},
-		},
-	}
-	vim.lsp.enable("rust-analyzer")
+	vim.lsp.config.rust_analyzer = require('plugins.lsp.rust-analyzer')
+	vim.lsp.enable("rust_analyzer")
 
 	-- Global mappings.
 	-- See `:help vim.diagnostic.*` for documentation on any of the below functions
