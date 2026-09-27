@@ -120,6 +120,7 @@ export PATH="/usr/local/opt/gnupg@2.2/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.venv/bin:$PATH"
 export GPG_TTY=$(tty)
 export EDITOR='nvim'
 export NVIMPATH=~/.config/nvim/init.vim
