@@ -102,10 +102,18 @@ function init()
 end
 
 return {
-	{ "nvim-treesitter/nvim-treesitter" },
 	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		init = init,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = { "markdown", "markdown_inline", "lua" },
+			highlight = { enable = true },
+		},
 	},
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter-textobjects",
+	-- 	init = init,
+	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	-- },
 }

@@ -1,8 +1,8 @@
 local init = function()
-	vim.lsp.config.ruff = require('plugins.lsp.ruff')
-	vim.lsp.enable('ruff')
+	vim.lsp.config.ruff = require("plugins.lsp.ruff")
+	vim.lsp.enable("ruff")
 
-	vim.lsp.config.rust_analyzer = require('plugins.lsp.rust-analyzer')
+	vim.lsp.config.rust_analyzer = require("plugins.lsp.rust-analyzer")
 	vim.lsp.enable("rust_analyzer")
 
 	-- Global mappings.
