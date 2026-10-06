@@ -33,7 +33,7 @@ return {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
+		branch = "master",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local builtin = require("telescope.builtin")
@@ -95,6 +95,13 @@ return {
 		lazy = false,
 		config = function()
 			require("Comment").setup()
+		end,
+	},
+	{
+		"nvim-mini/mini.comment",
+		version = false,
+		config = function()
+			require("mini.comment").setup()
 		end,
 	},
 	-- FileTree
